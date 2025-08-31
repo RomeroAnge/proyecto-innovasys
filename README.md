@@ -21,39 +21,40 @@ El objetivo es demostrar el uso de **roles de Ansible**, **variables**, **handle
 2. Ansible instalado en el nodo de control.
 3. Configurar el inventario `inventory.ini` con la IP del servidor gestionado.
 
-Ejemplo:
+Ejemplo de `inventory.ini`:
+
 ```ini
 [innovasys]
 192.168.10.100 ansible_user=usuario ansible_ssh_private_key_file=~/.ssh/id_rsa
-▶️ Ejecución del Playbook
+```
+
+▶️ **Ejecución del Playbook**  
 Para configurar el servidor ejecutar:
 
-bash
-Copiar código
+```bash
 ansible-playbook -i inventory.ini site.yml
-✅ Verificación
-Abrir un navegador en Linux Lite e ir a:
+```
 
-cpp
-Copiar código
+✅ **Verificación**  
+- Abrir un navegador en Linux Lite e ir a:  
+```text
 http://192.168.10.100
-Debería mostrar:
-
-css
-Copiar código
+```
+Debería mostrar:  
+```text
 Bienvenidos a la Intranet de InnovaSys
-Abrir el gestor de archivos en Linux Lite y conectarse a:
+```
 
-cpp
-Copiar código
+- Abrir el gestor de archivos en Linux Lite y conectarse a:  
+```text
 smb://192.168.10.100/Proyectos
-Acceder con usuario: devuser1
-Contraseña: Innova.2025
+```
+Acceder con usuario: `devuser1`  
+Contraseña: `Innova.2025`  
 Crear un archivo de prueba dentro del recurso compartido.
 
-📂 Estructura del Proyecto
-bash
-Copiar código
+📂 **Estructura del Proyecto**
+```bash
 innovaSys-ansible/
 ├── ansible.cfg
 ├── inventory.ini
@@ -69,7 +70,8 @@ innovaSys-ansible/
 │       ├── handlers/main.yml
 │       ├── templates/smb.conf.j2
 │       └── vars/main.yml
-✍️ Autor
-Cristhian Angeo B. Romero Vega
-Proyecto académico – Universidad (2025)
+```
 
+✍️ **Autor**  
+Cristhian Angeo B. Romero Vega  
+Proyecto académico – Universidad (2025)

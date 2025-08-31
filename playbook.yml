@@ -1,0 +1,6 @@
+- name: Configuración del servidor InnovaSys
+  hosts: innovasys
+  become: yes
+  roles:
+    - apache
+    - samba

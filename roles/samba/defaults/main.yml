@@ -1,0 +1,5 @@
+---
+samba_share_path: "/srv/samba/proyectos"
+samba_group: "desarrolladores"
+samba_user: "devuser1"
+samba_password: "Innova.2025"

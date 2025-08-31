@@ -1,0 +1,40 @@
+---
+- name: Crear grupo desarrolladores
+  ansible.builtin.group:
+    name: "{{ samba_group }}"
+    state: present
+
+- name: Crear usuario devuser1
+  ansible.builtin.user:
+    name: "{{ samba_user }}"
+    group: "{{ samba_group }}"
+    shell: /usr/sbin/nologin
+    create_home: no
+    state: present
+
+- name: Crear directorio compartido
+  ansible.builtin.file:
+    path: "{{ samba_share_path }}"
+    state: directory
+    owner: root
+    group: "{{ samba_group }}"
+    mode: "0770"
+
+- name: Configurar Samba
+  ansible.builtin.template:
+    src: smb.conf.j2
+    dest: /etc/samba/smb.conf
+  notify: Reiniciar Samba
+
+- name: Establecer contraseña de Samba para {{ samba_user }}
+  ansible.builtin.shell: |
+    (echo "{{ samba_password }}"; echo "{{ samba_password }}") | smbpasswd -s -a {{ samba_user }}
+  args:
+    executable: /bin/bash
+  when: samba_user is defined and samba_password is defined
+
+- name: Asegurar que Samba esté iniciado y habilitado
+  ansible.builtin.service:
+    name: smbd
+    state: started
+    enabled: true

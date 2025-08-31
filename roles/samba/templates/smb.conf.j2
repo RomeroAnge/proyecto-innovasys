@@ -1,0 +1,13 @@
+[global]
+   workgroup = WORKGROUP
+   server string = %h server (InnovaSys Samba)
+   dns proxy = no
+   map to guest = never
+
+[Proyectos]
+   path = {{ samba_share_path }}
+   browseable = yes
+   writable = yes
+   valid users = @{{ samba_group }}
+   create mask = 0660
+   directory mask = 2770
